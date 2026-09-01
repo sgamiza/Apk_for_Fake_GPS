@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 顶栏 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/brand_primary"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="阿米 虚拟定位"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:text="无 Root，通过 Shizuku 自动授予 mock_location 权限"
+                android:textColor="#C5CAE9"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- 步骤 1：Shizuku 状态 -->
+        <TextView
+            style="@style/CardTitle"
+            android:text="① Shizuku 状态" />
+
+        <TextView
+            android:id="@+id/tvShizukuStatus"
+            style="@style/CardBody"
+            android:text="检测中..." />
+
+        <LinearLayout style="@style/RowButtons">
+
+            <Button
+                android:id="@+id/btnShizukuPermit"
+                style="@style/PrimaryBtn"
+                android:layout_weight="2"
+                android:text="申请 Shizuku 权限" />
+
+            <Button
+                android:id="@+id/btnInstallShizuku"
+                style="@style/SecondaryBtn"
+                android:layout_weight="1"
+                android:text="安装 Shizuku"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 步骤 2：mock_location AppOps -->
+        <TextView
+            style="@style/CardTitle"
+            android:text="② 模拟位置授权" />
+
+        <TextView
+            android:id="@+id/tvMockOpsStatus"
+            style="@style/CardBody"
+            android:text="mock_location 状态: -" />
+
+        <LinearLayout style="@style/RowButtons">
+
+            <Button
+                android:id="@+id/btnGrantMock"
+                style="@style/PrimaryBtn"
+                android:layout_weight="2"
+                android:text="通过 Shizuku 授予 mock_location" />
+
+            <Button
+                android:id="@+id/btnOpenDevSettings"
+                style="@style/SecondaryBtn"
+                android:layout_weight="1"
+                android:text="开发者选项" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/RowButtons">
+
+            <Button
+                android:id="@+id/btnEnableLocation"
+                style="@style/PrimaryBtn"
+                android:layout_weight="2"
+                android:backgroundTint="#FB8C00"
+                android:text="通过 Shizuku 打开系统定位主开关" />
+
+            <Button
+                android:id="@+id/btnDiagnose"
+                style="@style/SecondaryBtn"
+                android:layout_weight="1"
+                android:text="诊断" />
+        </LinearLayout>
+
+        <!-- 步骤 3：坐标 -->
+        <TextView
+            style="@style/CardTitle"
+            android:text="③ 设置虚拟坐标" />
+
+        <LinearLayout
+            style="@style/Card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="预设地点"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <Spinner
+                android:id="@+id/spinnerPreset"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="纬度 (lat)"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/etLat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="39.908823"
+                        android:inputType="numberSigned|numberDecimal"
+                        android:textSize="14sp"
+                        android:autofillHints="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="经度 (lng)"
+                        android:textColor="#666666"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/etLng"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="116.397470"
+                        android:inputType="numberSigned|numberDecimal"
+                        android:textSize="14sp"
+                        android:autofillHints="" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="精度 (米)"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/etAccuracy"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:hint="1.0"
+                android:inputType="numberDecimal"
+                android:textSize="14sp"
+                android:autofillHints="" />
+
+        </LinearLayout>
+
+        <!-- 步骤 4：启停 -->
+        <TextView
+            style="@style/CardTitle"
+            android:text="④ 启动 / 停止" />
+
+        <TextView
+            android:id="@+id/tvRunStatus"
+            style="@style/CardBody"
+            android:text="○ 未运行" />
+
+        <LinearLayout style="@style/RowButtons">
+
+            <Button
+                android:id="@+id/btnStart"
+                style="@style/PrimaryBtn"
+                android:layout_weight="1"
+                android:backgroundTint="#00897B"
+                android:text="启动虚拟定位" />
+
+            <Button
+                android:id="@+id/btnStop"
+                style="@style/SecondaryBtn"
+                android:layout_weight="1"
+                android:backgroundTint="#E53935"
+                android:text="停止" />
+        </LinearLayout>
+
+        <!-- 步骤 5：高德/百度网络定位拦截（VpnService DNS 黑洞） -->
+        <TextView
+            style="@style/CardTitle"
+            android:text="⑤ 高德/百度网络定位拦截（不影响其他网络）" />
+
+        <TextView
+            android:id="@+id/tvFenceStatus"
+            style="@style/CardBody"
+            android:text="○ GPS 围栏未运行" />
+
+        <LinearLayout style="@style/RowButtons">
+
+            <Button
+                android:id="@+id/btnFenceToggle"
+                style="@style/PrimaryBtn"
+                android:layout_weight="1"
+                android:backgroundTint="#7E57C2"
+                android:text="启动 GPS 围栏（拦截高德/百度网络定位）" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="使用顺序：\n①→②(绿)→②(橙打开主开关)→③→④ 启动虚拟定位 → ⑤ 启动 GPS 围栏\n\n关于 ⑤ GPS 围栏：\n• 仅拦截高德/百度的『网络定位 API』DNS 解析，让它们的网络定位失败 → 自动 fallback 到 GPS（=我们的 mock）\n• 完全不影响地图瓦片、POI 搜索、导航、其他 App\n• 启动时 Android 系统会弹『允许 VPN？』对话框，必须点同意（这是 VpnService 的标准流程，不会上传任何数据）\n• 状态栏会有钥匙图标提示 VPN 在跑\n\n反检测说明：\n• 跨进程的 isFromMockProvider() 仍可能返回 true（系统层标志），彻底隐藏需 Root/Xposed\n• 高德如果用 IP 直连或 DoH 绕过 DNS，本方案对它无效（实测国内 APP 几乎不会这么做）"
+            android:textColor="#888888"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+</ScrollView>
